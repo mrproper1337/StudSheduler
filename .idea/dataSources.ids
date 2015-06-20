@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="SQLite -" uuid="3a2b2b66-d06c-4bdd-aab1-0bd691514b17">
+    <database-info product="SQLite" version="3.7.6.3" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
+    <schema name="" catalog=""/>
+    <table name="audience" schema="" catalog="" type="TABLE">
+      <column name="audience_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="audience_number" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="audience_pavilion" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="audience_floor" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <primary-key columns="audience_id"/>
+      <exported-key name="#FAKE_lecturer_audience_1" table="lecturer_audience" schema="" catalog="" columns="la_audience"/>
+      <exported-key name="#FAKE_schedule_1" table="schedule" schema="" catalog="" columns="schedule_audience"/>
+    </table>
+    <table name="faculty" schema="" catalog="" type="TABLE">
+      <column name="faculty_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="faculty_name" sqlType="TEXT" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <column name="faculty_semesters" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <primary-key columns="faculty_id"/>
+      <exported-key name="#FAKE_semester_1" table="semester" schema="" catalog="" columns="semester_faculty"/>
+    </table>
+    <table name="lecturer" schema="" catalog="" type="TABLE">
+      <column name="lecturer_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="lecturer_name" sqlType="TEXT" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <primary-key columns="lecturer_id"/>
+      <exported-key name="#FAKE_lecturer_audience_2" table="lecturer_audience" schema="" catalog="" columns="la_lecturer"/>
+      <exported-key name="#FAKE_lecturer_time_2" table="lecturer_time" schema="" catalog="" columns="lt_lecturer"/>
+      <exported-key name="#FAKE_subject_lecturer_group_2" table="subject_lecturer_group" schema="" catalog="" columns="slg_lecturer"/>
+    </table>
+    <table name="lecturer_audience" schema="" catalog="" type="TABLE">
+      <column name="la_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="la_lecturer" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="la_audience" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <primary-key columns="la_id"/>
+      <foreign-key name="#FAKE_lecturer_audience_1" columns="la_audience" ref-table="audience" ref-schema="" ref-catalog="" ref-columns="audience_id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_lecturer_audience_2" columns="la_lecturer" ref-table="lecturer" ref-schema="" ref-catalog="" ref-columns="lecturer_id" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="lecturer_time" schema="" catalog="" type="TABLE">
+      <column name="lt_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="lt_lecturer" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="lt_time" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <primary-key columns="lt_id"/>
+      <foreign-key name="#FAKE_lecturer_time_1" columns="lt_time" ref-table="time" ref-schema="" ref-catalog="" ref-columns="time_id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_lecturer_time_2" columns="lt_lecturer" ref-table="lecturer" ref-schema="" ref-catalog="" ref-columns="lecturer_id" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="schedule" schema="" catalog="" type="TABLE">
+      <column name="schedule_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="schedule_time" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="schedule_slg" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="schedule_audience" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <primary-key columns="schedule_id"/>
+      <foreign-key name="#FAKE_schedule_1" columns="schedule_audience" ref-table="audience" ref-schema="" ref-catalog="" ref-columns="audience_id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_schedule_2" columns="schedule_slg" ref-table="subject_lecturer_group" ref-schema="" ref-catalog="" ref-columns="slg_id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_schedule_3" columns="schedule_time" ref-table="time" ref-schema="" ref-catalog="" ref-columns="time_id" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="semester" schema="" catalog="" type="TABLE">
+      <column name="semester_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="semester_number" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="semester_faculty" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <primary-key columns="semester_id"/>
+      <foreign-key name="#FAKE_semester_1" columns="semester_faculty" ref-table="faculty" ref-schema="" ref-catalog="" ref-columns="faculty_id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="#FAKE_st_group_1" table="st_group" schema="" catalog="" columns="group_semester"/>
+      <exported-key name="#FAKE_subject_1" table="subject" schema="" catalog="" columns="subject_semester"/>
+    </table>
+    <table name="sqlite_sequence" schema="" catalog="" type="TABLE">
+      <column name="name" sqlType="" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+      <column name="seq" sqlType="" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="st_group" schema="" catalog="" type="TABLE">
+      <column name="group_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="group_name" sqlType="TEXT" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <column name="group_semester" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <primary-key columns="group_id"/>
+      <foreign-key name="#FAKE_st_group_1" columns="group_semester" ref-table="semester" ref-schema="" ref-catalog="" ref-columns="semester_id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="#FAKE_subject_lecturer_group_1" table="subject_lecturer_group" schema="" catalog="" columns="slg_group"/>
+    </table>
+    <table name="subject" schema="" catalog="" type="TABLE">
+      <column name="subject_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="subject_name" sqlType="TEXT" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <column name="subject_hours" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="subject_semester" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <primary-key columns="subject_id"/>
+      <foreign-key name="#FAKE_subject_1" columns="subject_semester" ref-table="semester" ref-schema="" ref-catalog="" ref-columns="semester_id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="#FAKE_subject_lecturer_group_3" table="subject_lecturer_group" schema="" catalog="" columns="slg_subject"/>
+    </table>
+    <table name="subject_lecturer_group" schema="" catalog="" type="TABLE">
+      <column name="slg_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="slg_subject" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="slg_lecturer" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="slg_group" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <primary-key columns="slg_id"/>
+      <foreign-key name="#FAKE_subject_lecturer_group_1" columns="slg_group" ref-table="st_group" ref-schema="" ref-catalog="" ref-columns="group_id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_subject_lecturer_group_2" columns="slg_lecturer" ref-table="lecturer" ref-schema="" ref-catalog="" ref-columns="lecturer_id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_subject_lecturer_group_3" columns="slg_subject" ref-table="subject" ref-schema="" ref-catalog="" ref-columns="subject_id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="#FAKE_schedule_2" table="schedule" schema="" catalog="" columns="schedule_slg"/>
+    </table>
+    <table name="time" schema="" catalog="" type="TABLE">
+      <column name="time_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="time_number" sqlType="INT" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="time_day" sqlType="TEXT" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <primary-key columns="time_id"/>
+      <exported-key name="#FAKE_lecturer_time_1" table="lecturer_time" schema="" catalog="" columns="lt_time"/>
+      <exported-key name="#FAKE_schedule_3" table="schedule" schema="" catalog="" columns="schedule_time"/>
+    </table>
+  </data-source>
+</component>

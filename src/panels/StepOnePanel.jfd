@@ -1,0 +1,46 @@
+JFDML JFormDesigner: "5.2.1.0.138" Java: "1.8.0_31" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :::p, par l {comp scrollPane1::::478:x, seq {comp comboBox1:::p:146:p, space ::281:x, comp label1:::p:51:p}}, space :::p}}"
+			"$verticalGroup": "par l {seq t {space :::p, comp scrollPane1::::285:x, space :p:12:p, par t {comp comboBox1:::p::p, comp label1:::p::p}, space :::p}}"
+		} ) {
+			name: "this"
+			"preferredSize": new java.awt.Dimension( 460, 320 )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox1"
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "Викладачі"
+					addElement( "Викладачі" )
+					addElement( "Аудиторії" )
+					addElement( "Відділення" )
+				}
+				auxiliary() {
+					"JavaCodeGenerator.variableModifiers": 10
+				}
+				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "comboBox1ItemStateChanged", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+					"font": new java.awt.Font( "Times New Roman", 0, 16 )
+					"rowHeight": 20
+					auxiliary() {
+						"JavaCodeGenerator.variableModifiers": 10
+					}
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Крок 1"
+				"font": new java.awt.Font( "Segoe UI", 1, 14 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 490, 335 )
+		} )
+	}
+}
